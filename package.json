@@ -1,0 +1,23 @@
+{
+  "name": "sosiam",
+  "version": "1.0.0",
+  "description": "Simple OS IAM",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgardeloire/SOsiam.git"
+  },
+  "author": "Biz-Planet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edgardeloire/SOsiam/issues"
+  },
+  "homepage": "https://github.com/edgardeloire/SOsiam#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongoose": "^4.11.1"
+  }
+}
