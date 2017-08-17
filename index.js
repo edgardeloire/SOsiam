@@ -1,8 +1,13 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const path =require('path');
+const cors= require('cors');
+const  passport = require ('passport');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 8080;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri+config.db, {
@@ -18,12 +23,22 @@ mongoose.connect(config.uri+config.db, {
   }
 });
 
-app.use(express.static(__dirname + '/client/dist'));
+app.use(cors());
+app.use(bodyParser.json());
 
+// REST  Routes
+const users = require('./routes/users');
+app.use('/rest/users',users);
+
+// Angular Client Routes
+app.use(express.static(__dirname + '/client/dist'));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname +'/client/dist/index.html'));
 })
 
-app.listen(8080, () => {
-  console.log('App listening on port 8080...')
+// 404 NOT FOUND
+app.get('/',(req,res,next)=>{res.send('<h1>404 Not Found</h1>')});
+
+app.listen(port, () => {
+  console.log(`App listening sur host02 on port ${port}`);
 })
